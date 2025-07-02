@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chaitali Daware - Cloud & DevOps Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #333;
+      --accent-color: #1e90ff;
+      --card-bg: #ffffff;
+      --dark-bg: #121212;
+      --dark-text: #f4f4f4;
+      --dark-card: #1f1f1f;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    body[data-theme='dark'] {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--accent-color);
+      color: white;
+      position: relative;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .toggle-theme {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    body[data-theme='dark'] .card {
+      background: var(--dark-card);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .contact-form button {
+      padding: 0.75rem 2rem;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #0d6efd;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <header>
+    <div class="toggle-theme" onclick="toggleTheme()">
+      <i class="fas fa-adjust"></i>
+    </div>
+    <h1>Chaitali Daware</h1>
+    <p>Cloud | DevOps | AWS Enthusiast</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="card">
+      <p>I am a passionate Cloud and DevOps engineer with a strong focus on building scalable, serverless, and automated solutions on AWS. My expertise lies in AWS Lambda, API Gateway, S3, DynamoDB, and CI/CD with GitHub Actions.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="card">
+      <h3>Cloud Portfolio Hosting</h3>
+      <p>React-based static portfolio hosted on AWS S3 + CloudFront. Integrated with Route 53 for custom domain and SSL using ACM.</p>
+    </div>
+    <div class="card">
+      <h3>Serverless Contact Form</h3>
+      <p>Contact form powered by AWS Lambda, API Gateway, and DynamoDB for form submissions, with real-time feedback.</p>
+    </div>
+    <div class="card">
+      <h3>Real-Time Visitor Analytics</h3>
+      <p>Implemented visitor tracking using Lambda + DynamoDB and visualized metrics with CloudWatch.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="responseMessage"></p>
+
+    
+
+  </section>
+  <section id="analytics">
+    <h2 class="section-title">Visitor Analytics</h2>
+    <div class="card">
+      <p id="total">Total Visits: 0</p>
+      <p id="referrers">Sources: None</p>
+    </div>
+
+  </section>
+
+  <footer style="text-align: center; padding: 2rem; background: var(--accent-color); color: white;">
+    <p>&copy; 2025 Chaitali Daware. All rights reserved.</p>
+
+    
+  
+  </footer>
+
+
+
+  
+  <script>
+    // Toggle dark/light theme
+    function toggleTheme() {
+      const theme = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.body.setAttribute("data-theme", theme);
+    }
+    //contact form submission
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+      };
+   // validate form data    
+      const response = await fetch("https://1pw9hfrsm9.execute-api.ap-south-1.amazonaws.com/prod/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.text();
+      document.getElementById("responseMessage").innerText = result;
+    });
+
+    // Visitor Tracking
+    fetch("https://wcdy3q2voj.execute-api.ap-south-1.amazonaws.com/prod/track")
+      .then(response => response.json())
+      .then(data => console.log("Visitor Tracked:", data))
+      .catch(error => console.error("Tracking Failed:", error));
+
+    //Real-time Analytics
+    fetch("https://up55jx3m4g.execute-api.ap-south-1.amazonaws.com/prod/stats")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("total").innerText = `Total Visits: ${data.totalVisits}`;
+    
+    const refList = Object.entries(data.referrer_breakdown)
+      .map(([ref, count]) => `${ref}: ${count}`)
+      .join(", ");
+    
+    document.getElementById("referrers").innerText = `Sources: ${refList}`;
+  });
+
+  </script>
+</body>
+
+</html>
