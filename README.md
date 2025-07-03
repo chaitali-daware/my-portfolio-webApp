@@ -156,16 +156,8 @@ Welcome to my personal cloud-native portfolio website! 🎯 Built using modern c
 ## 📬 Contact
 
 Got feedback or questions?  
-📧 [your-email@example.com]  
-🌐 Or use the Contact Form on my site
+📧 [chaitalidaware554@gmail.com]  
 
----
-
-## 🪪 License
-
-This project is licensed under the MIT License.
-
----
 
 ⭐ **If you like this project, don’t forget to star it!** ⭐
 
